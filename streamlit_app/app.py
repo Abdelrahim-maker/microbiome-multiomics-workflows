@@ -135,7 +135,7 @@ def render_sidebar_links() -> None:
     st.sidebar.subheader("Application links")
     st.sidebar.markdown(f"- [GitHub repository]({REPO_BASE.rsplit('/blob/main', 1)[0]})")
     st.sidebar.markdown(f"- [Portfolio website]({PAGES_BASE})")
-    st.sidebar.markdown(f"- [Why I fit P&G]({PAGES_BASE}/projects/pg-fit.html)")
+    st.sidebar.markdown(f"- [Internship portfolio summary]({PAGES_BASE}/projects/results-highlights.html)")
     st.sidebar.markdown(f"- [Scripts library]({PAGES_BASE}/projects/scripts-library.html)")
     st.sidebar.info("For recruiters: start with the Figures or Internship fit tabs, then use Code for traceability.")
 
@@ -179,7 +179,7 @@ def render_top_actions() -> None:
         f"""
         <div class="button-row">
             <a class="app-button" href="{PAGES_BASE}" target="_blank">Open portfolio website</a>
-            <a class="app-button secondary" href="{PAGES_BASE}/projects/pg-fit.html" target="_blank">See internship fit summary</a>
+            <a class="app-button secondary" href="{PAGES_BASE}/projects/results-highlights.html" target="_blank">See results highlights</a>
             <a class="app-button secondary" href="{REPO_BASE.rsplit('/blob/main', 1)[0]}" target="_blank">Browse GitHub repository</a>
         </div>
         """,
@@ -196,6 +196,26 @@ def render_recruiter_brief() -> None:
             <div class="fit-card">
                 <h3>Reproducible analytics</h3>
                 Scripted workflows convert raw microbiome outputs into repeatable tables, figures, and validation checks.
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+    with second:
+        st.markdown(
+            """
+            <div class="fit-card">
+                <h3>Statistical judgment</h3>
+                The app surfaces effect sizes, uncertainty intervals, FDR-adjusted signals, and community-level tests.
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+    with third:
+        st.markdown(
+            """
+            <div class="fit-card">
+                <h3>Decision-ready communication</h3>
+                Outputs are translated into reviewable summaries, figure galleries, and direct links back to the code.
             </div>
             """,
             unsafe_allow_html=True,
@@ -223,26 +243,6 @@ def render_feature_spotlight(filtered: pd.DataFrame) -> None:
         """,
         unsafe_allow_html=True,
     )
-    with second:
-        st.markdown(
-            """
-            <div class="fit-card">
-                <h3>Statistical judgment</h3>
-                The app surfaces effect sizes, uncertainty intervals, FDR-adjusted signals, and community-level tests.
-            </div>
-            """,
-            unsafe_allow_html=True,
-        )
-    with third:
-        st.markdown(
-            """
-            <div class="fit-card">
-                <h3>Decision-ready communication</h3>
-                Outputs are translated into reviewable summaries, figure galleries, and direct links back to the code.
-            </div>
-            """,
-            unsafe_allow_html=True,
-        )
 
 
 def render_how_to_use() -> None:
@@ -273,7 +273,7 @@ def render_internship_fit() -> None:
         1. Review the hero section and summary metrics for context.
         2. Open the Figures tab for visual quality and communication.
         3. Open the Code tab to confirm reproducibility and engineering depth.
-        4. Use the portfolio and P&G-fit links for the broader application narrative.
+        4. Use the portfolio and results links for the broader application narrative.
         """
     )
 
@@ -346,7 +346,7 @@ def render_repo_links() -> None:
         "Ordination detail": f"{REPO_BASE}/scripts/ordination_OM_by_shrub.py",
         "Story workflow": f"{REPO_BASE}/manuscript_story/scripts/analyze_story.py",
         "Portfolio scripts page": f"{PAGES_BASE}/projects/scripts-library.html",
-        "Why I fit P&G page": f"{PAGES_BASE}/projects/pg-fit.html",
+        "Results highlights page": f"{PAGES_BASE}/projects/results-highlights.html",
     }
     for label, url in links.items():
         st.markdown(f"- [{label}]({url})")
