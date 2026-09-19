@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Afaf | P&G Internship Portfolio</title>
+  <title>Afaf | Data Science Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
@@ -11,14 +11,21 @@
 </head>
 <body>
   <div class="wrap">
-    <header>
+    <header class="hero-shell reveal">
+      <div class="hero-ornaments" aria-hidden="true">
+        <div class="orb orb-carbon"></div>
+        <div class="orb orb-shrub"></div>
+        <div class="orb orb-soil"></div>
+        <div class="signal signal-1">Shrub systems</div>
+        <div class="signal signal-2">Carbon signals</div>
+        <div class="signal signal-3">Traceable outputs</div>
+      </div>
       <h1>Data Science and Bioinformatics Portfolio</h1>
       <p class="tagline">
         Internship-focused portfolio that demonstrates reproducible analytics, robust statistical modeling,
         and decision-ready reporting from complex biological datasets.
       </p>
       <p>
-        <a href="projects/pg-fit.html">Why I fit P&amp;G</a> |
         <a href="projects/results-highlights.html">Results highlights</a> |
         <a href="projects/scripts-library.html">Scripts library</a> |
         <a href="assets/Afaf_Abdelrahim_CV_2026.pdf">CV</a> |
@@ -26,7 +33,7 @@
       </p>
     </header>
 
-    <section class="section card">
+    <section class="section card reveal">
       <h2>About Me</h2>
       <p>
         I build reproducible data workflows that turn noisy, high-dimensional inputs into clear recommendations.
@@ -38,7 +45,7 @@
       </p>
     </section>
 
-    <section class="section">
+    <section class="section reveal">
       <h2>Value for Industry Teams</h2>
       <div class="grid kpi-grid">
         <article class="card kpi">
@@ -56,7 +63,53 @@
       </div>
     </section>
 
-    <section class="section">
+    <section class="section reveal">
+      <h2>Featured Project</h2>
+      <div class="featured-project card">
+        <div class="featured-header">
+          <div>
+            <p class="eyebrow">Portfolio highlight</p>
+            <h3 data-featured-title>Ordination and Shrub-System Interpretation</h3>
+            <p class="tagline" data-featured-summary>
+              A treatment-focused ordination workflow showing how shrub-state context changes carbon-linked community patterns.
+            </p>
+          </div>
+          <div class="chip-row feature-switcher" role="group" aria-label="Featured project selector">
+            <button class="chip is-active" type="button" data-featured-key="shrub">Shrub systems</button>
+            <button class="chip" type="button" data-featured-key="carbon">Carbon story</button>
+            <button class="chip" type="button" data-featured-key="delivery">Reporting</button>
+          </div>
+        </div>
+        <div class="featured-grid">
+          <div class="featured-copy">
+            <div class="featured-metrics">
+              <div class="metric-card">
+                <span class="metric-label">Focus</span>
+                <strong data-featured-focus>Ecological separation</strong>
+              </div>
+              <div class="metric-card">
+                <span class="metric-label">Methods</span>
+                <strong data-featured-methods>Hellinger PCA + contrasts</strong>
+              </div>
+              <div class="metric-card">
+                <span class="metric-label">Reviewer value</span>
+                <strong data-featured-value>Fast visual insight</strong>
+              </div>
+            </div>
+            <p data-featured-detail>
+              This project is a strong first stop for recruiters because it combines statistical structure, visual storytelling,
+              and a biologically intuitive treatment narrative.
+            </p>
+            <p><a data-featured-link href="projects/ordination-visualization.html">Open the featured project page</a></p>
+          </div>
+          <div class="featured-media">
+            <img data-featured-image src="assets/previews/GC_OM_vs_noOM_separate_shrub_groups.png" alt="Featured project preview">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section reveal">
       <h2>Projects</h2>
       <div class="project-toolbar card">
         <div>
@@ -81,7 +134,7 @@
         </div>
       </div>
       <div class="grid">
-        <article class="card" data-project-card data-category="preparation" data-keywords="preparation mapping audit metadata direct inferred validation tpm mag gene">
+        <article class="card reveal-card" data-project-card data-category="preparation" data-keywords="preparation mapping audit metadata direct inferred validation tpm mag gene">
           <img class="thumb" src="assets/previews/GC_carbon_gene_with_stats.png" alt="Carbon gene community plot preview">
           <h3>1) Data Preparation and Mapping Audit</h3>
           <p>Target definitions, annotation joins, mapping-based quantification, and metadata matching checks.</p>
@@ -94,7 +147,7 @@
           <div class="pill">Preparation</div>
         </article>
 
-        <article class="card" data-project-card data-category="modeling" data-keywords="modeling feature effects statistics regression fdr robustness community tests gene pathway mechanism mag">
+        <article class="card reveal-card" data-project-card data-category="modeling" data-keywords="modeling feature effects statistics regression fdr robustness community tests gene pathway mechanism mag">
           <img class="thumb" src="assets/previews/GC_gene_effects.png" alt="Feature effect summary preview">
           <h3>2) Core Statistical Analysis</h3>
           <p>Feature-level adjusted models and multivariable community tests for gene, pathway, mechanism, and MAG levels.</p>
@@ -107,7 +160,7 @@
           <div class="pill">Modeling</div>
         </article>
 
-        <article class="card" data-project-card data-category="visualization" data-keywords="visualization ordination pca hellinger treatment shrub figure preview plot community">
+        <article class="card reveal-card" data-project-card data-category="visualization" data-keywords="visualization ordination pca hellinger treatment shrub figure preview plot community">
           <img class="thumb" src="assets/previews/GC_OM_vs_noOM_separate_shrub_groups.png" alt="Ordination preview">
           <h3>3) Ordination and Visualization</h3>
           <p>Hellinger PCA ordinations and treatment-focused interpretation-ready figures for GC and OSS.</p>
@@ -120,7 +173,7 @@
           <div class="pill">Visualization</div>
         </article>
 
-        <article class="card" data-project-card data-category="story" data-keywords="story manuscript figures contrasts category follow up interpretation carbon report">
+        <article class="card reveal-card" data-project-card data-category="story" data-keywords="story manuscript figures contrasts category follow up interpretation carbon report">
           <img class="thumb" src="assets/previews/GC_carbon_category_with_stats.png" alt="Manuscript story preview">
           <h3>4) Manuscript Story Package</h3>
           <p>Publication-style workflow with factorial contrasts, category-level follow-up, and curated figure outputs.</p>
@@ -133,7 +186,7 @@
           <div class="pill">Story</div>
         </article>
 
-        <article class="card" data-project-card data-category="deliverables" data-keywords="deliverables reporting workbook export validation summary tables html markdown">
+        <article class="card reveal-card" data-project-card data-category="deliverables" data-keywords="deliverables reporting workbook export validation summary tables html markdown">
           <img class="thumb" src="assets/previews/GC_cross_level_effect_sizes.png" alt="Reporting summary preview">
           <h3>5) Reporting and Deliverables</h3>
           <p>Automated report generation, workbook export, and audit-ready result tables.</p>
@@ -148,7 +201,7 @@
       </div>
     </section>
 
-    <section class="section callout">
+    <section class="section callout reveal">
       <h2>How This Site Is Organized</h2>
       <p>
         Scripts are grouped by project objective instead of file type. This makes it easy for internship reviewers to see
@@ -159,10 +212,9 @@
         <li>Code remains in its original location; this site is a presentation layer.</li>
         <li>Pages can be deployed directly from the portfolio_site folder in GitHub Pages.</li>
       </ul>
-      <p><a href="projects/pg-fit.html">See internship-ready competency mapping for P&amp;G</a>.</p>
     </section>
 
-    <footer>
+    <footer class="reveal">
       <p>Built for internship applications. Last update: 2026-09-18.</p>
     </footer>
   </div>
