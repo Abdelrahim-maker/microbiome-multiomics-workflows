@@ -55,6 +55,40 @@ h1 {
   margin: 22px 0 40px;
 }
 
+.kpi-grid {
+  margin-top: 10px;
+}
+
+.kpi {
+  border-top: 4px solid var(--accent-2);
+}
+
+.cta {
+  background: linear-gradient(90deg, #fff1d9, #f7fbff);
+  border: 1px solid #dccfae;
+  border-radius: 12px;
+  padding: 14px;
+}
+
+.matrix {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border: 1px solid var(--line);
+}
+
+.matrix th,
+.matrix td {
+  border: 1px solid var(--line);
+  padding: 8px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.matrix th {
+  background: #f5f8fb;
+}
+
 .card {
   background: var(--card);
   border: 1px solid var(--line);
