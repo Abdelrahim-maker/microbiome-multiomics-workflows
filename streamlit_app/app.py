@@ -8,6 +8,7 @@ APP_DIR = Path(__file__).resolve().parent
 DATA_DIR = APP_DIR / "data"
 ASSET_DIR = APP_DIR / "assets"
 REPO_BASE = "https://github.com/Abdelrahim-maker/microbiome-multiomics-workflows/blob/main"
+PAGES_BASE = "https://abdelrahim-maker.github.io/microbiome-multiomics-workflows"
 
 
 @st.cache_data
@@ -53,10 +54,31 @@ def style_page() -> None:
             border: 1px solid rgba(24, 70, 92, 0.12);
             min-height: 100%;
         }
+        .fit-card {
+            padding: 1rem;
+            border-radius: 16px;
+            background: #fffdf7;
+            border: 1px solid rgba(204, 90, 45, 0.18);
+            min-height: 100%;
+        }
+        .fit-card h3 {
+            margin-top: 0;
+            margin-bottom: 0.45rem;
+            font-size: 1.05rem;
+        }
         </style>
         """,
         unsafe_allow_html=True,
     )
+
+
+def render_sidebar_links() -> None:
+    st.sidebar.markdown("---")
+    st.sidebar.subheader("Application links")
+    st.sidebar.markdown(f"- [GitHub repository]({REPO_BASE.rsplit('/blob/main', 1)[0]})")
+    st.sidebar.markdown(f"- [Portfolio website]({PAGES_BASE})")
+    st.sidebar.markdown(f"- [Why I fit P&G]({PAGES_BASE}/projects/pg-fit.html)")
+    st.sidebar.markdown(f"- [Scripts library]({PAGES_BASE}/projects/scripts-library.html)")
 
 
 def filter_feature_models(feature_models: pd.DataFrame) -> pd.DataFrame:
@@ -90,6 +112,64 @@ def render_summary(filtered: pd.DataFrame) -> None:
         return
     middle.metric("Lowest q-value", f"{filtered['q'].min():.3g}")
     right.metric("Largest |beta|", f"{filtered['beta'].abs().max():.3f}")
+
+
+def render_recruiter_brief() -> None:
+    st.subheader("What this demo proves")
+    first, second, third = st.columns(3)
+    with first:
+        st.markdown(
+            """
+            <div class="fit-card">
+                <h3>Reproducible analytics</h3>
+                Scripted workflows convert raw microbiome outputs into repeatable tables, figures, and validation checks.
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+    with second:
+        st.markdown(
+            """
+            <div class="fit-card">
+                <h3>Statistical judgment</h3>
+                The app surfaces effect sizes, uncertainty intervals, FDR-adjusted signals, and community-level tests.
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+    with third:
+        st.markdown(
+            """
+            <div class="fit-card">
+                <h3>Decision-ready communication</h3>
+                Outputs are translated into reviewable summaries, figure galleries, and direct links back to the code.
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+
+
+def render_how_to_use() -> None:
+    st.subheader("Best way to review this app")
+    st.markdown(
+        """
+        1. Start with the sidebar filters to choose a study and feature level.
+        2. Use Feature models to inspect strongest signals and download a filtered table.
+        3. Use Community tests to see broader treatment effects beyond single features.
+        4. Use Figures and Code for fast visual review and traceability back to the repository.
+        """
+    )
+
+
+def render_internship_fit() -> None:
+    st.subheader("Why this is internship-ready")
+    st.markdown(
+        """
+        - It demonstrates end-to-end ownership: data preparation, statistical analysis, visualization, and reporting.
+        - It is reviewable by both technical and non-technical audiences.
+        - It shows that the analysis is not just code-complete, but presentation-ready for collaboration and decision support.
+        """
+    )
 
 
 def render_feature_table(filtered: pd.DataFrame) -> None:
@@ -159,7 +239,8 @@ def render_repo_links() -> None:
         "Core analysis": f"{REPO_BASE}/scripts/analyze.py",
         "Ordination detail": f"{REPO_BASE}/scripts/ordination_OM_by_shrub.py",
         "Story workflow": f"{REPO_BASE}/manuscript_story/scripts/analyze_story.py",
-        "Full scripts library": f"{REPO_BASE}/docs/projects/scripts-library.html",
+        "Portfolio scripts page": f"{PAGES_BASE}/projects/scripts-library.html",
+        "Why I fit P&G page": f"{PAGES_BASE}/projects/pg-fit.html",
     }
     for label, url in links.items():
         st.markdown(f"- [{label}]({url})")
@@ -184,14 +265,17 @@ def main() -> None:
     )
 
     filtered = filter_feature_models(feature_models)
+    render_sidebar_links()
     selected_study = filtered["study"].iloc[0] if not filtered.empty else st.session_state.get("Study", "GC")
+    render_recruiter_brief()
     render_summary(filtered)
 
-    overview, community, concordance_tab, gallery, code = st.tabs(
-        ["Feature models", "Community tests", "Concordance", "Figures", "Code"]
+    overview, community, concordance_tab, gallery, code, fit = st.tabs(
+        ["Feature models", "Community tests", "Concordance", "Figures", "Code", "Internship fit"]
     )
 
     with overview:
+        render_how_to_use()
         render_feature_table(filtered)
     with community:
         render_community_tests(community_tests, selected_study)
@@ -201,6 +285,8 @@ def main() -> None:
         render_gallery()
     with code:
         render_repo_links()
+    with fit:
+        render_internship_fit()
 
 
 if __name__ == "__main__":
