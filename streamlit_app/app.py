@@ -9,6 +9,7 @@ DATA_DIR = APP_DIR / "data"
 ASSET_DIR = APP_DIR / "assets"
 REPO_BASE = "https://github.com/Abdelrahim-maker/microbiome-multiomics-workflows/blob/main"
 PAGES_BASE = "https://abdelrahim-maker.github.io/microbiome-multiomics-workflows"
+CV_URL = f"{PAGES_BASE}/assets/Afaf_Abdelrahim_CV_2026.pdf"
 
 
 @st.cache_data
@@ -135,6 +136,7 @@ def render_sidebar_links() -> None:
     st.sidebar.subheader("Application links")
     st.sidebar.markdown(f"- [GitHub repository]({REPO_BASE.rsplit('/blob/main', 1)[0]})")
     st.sidebar.markdown(f"- [Portfolio website]({PAGES_BASE})")
+    st.sidebar.markdown(f"- [CV PDF]({CV_URL})")
     st.sidebar.markdown(f"- [Internship portfolio summary]({PAGES_BASE}/projects/results-highlights.html)")
     st.sidebar.markdown(f"- [Scripts library]({PAGES_BASE}/projects/scripts-library.html)")
     st.sidebar.info("For recruiters: start with the Figures or Internship fit tabs, then use Code for traceability.")
@@ -179,6 +181,7 @@ def render_top_actions() -> None:
         f"""
         <div class="button-row">
             <a class="app-button" href="{PAGES_BASE}" target="_blank">Open portfolio website</a>
+            <a class="app-button secondary" href="{CV_URL}" target="_blank">Open CV</a>
             <a class="app-button secondary" href="{PAGES_BASE}/projects/results-highlights.html" target="_blank">See results highlights</a>
             <a class="app-button secondary" href="{REPO_BASE.rsplit('/blob/main', 1)[0]}" target="_blank">Browse GitHub repository</a>
         </div>
