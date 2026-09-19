@@ -32,20 +32,63 @@ def style_page() -> None:
     st.markdown(
         """
         <style>
+        .stApp {
+            background:
+                radial-gradient(circle at top left, rgba(255, 225, 183, 0.34), transparent 26%),
+                radial-gradient(circle at top right, rgba(187, 225, 255, 0.26), transparent 24%),
+                linear-gradient(180deg, #fffaf3 0%, #f8fbfe 100%);
+        }
         .hero {
-            padding: 1.2rem 1.4rem;
-            border: 1px solid rgba(24, 70, 92, 0.14);
-            border-radius: 18px;
-            background: linear-gradient(135deg, #fff7e8 0%, #f6fbff 100%);
-            margin-bottom: 1rem;
+            padding: 1.45rem 1.5rem;
+            border: 1px solid rgba(24, 70, 92, 0.12);
+            border-radius: 24px;
+            background: linear-gradient(135deg, rgba(255, 246, 229, 0.96) 0%, rgba(244, 250, 255, 0.98) 100%);
+            box-shadow: 0 14px 30px rgba(19, 32, 43, 0.08);
+            margin-bottom: 1.1rem;
         }
         .hero h1 {
             margin: 0;
-            font-size: 2.2rem;
+            font-size: 2.5rem;
+            line-height: 1.05;
         }
         .hero p {
-            margin: 0.5rem 0 0;
-            max-width: 70ch;
+            margin: 0.65rem 0 0;
+            max-width: 72ch;
+            font-size: 1.02rem;
+        }
+        .hero-kicker {
+            display: inline-block;
+            margin-bottom: 0.75rem;
+            padding: 0.28rem 0.72rem;
+            border-radius: 999px;
+            background: #143849;
+            color: #fff;
+            font-size: 0.78rem;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+        .button-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+            margin-top: 1rem;
+        }
+        .button-row a {
+            text-decoration: none !important;
+        }
+        .app-button {
+            display: inline-block;
+            padding: 0.72rem 1rem;
+            border-radius: 14px;
+            background: #13202b;
+            color: #fff !important;
+            font-weight: 600;
+            border: 1px solid rgba(19, 32, 43, 0.12);
+            box-shadow: 0 8px 18px rgba(19, 32, 43, 0.10);
+        }
+        .app-button.secondary {
+            background: rgba(255, 255, 255, 0.85);
+            color: #143849 !important;
         }
         .caption-card {
             padding: 0.85rem 1rem;
@@ -60,11 +103,26 @@ def style_page() -> None:
             background: #fffdf7;
             border: 1px solid rgba(204, 90, 45, 0.18);
             min-height: 100%;
+            box-shadow: 0 8px 18px rgba(19, 32, 43, 0.05);
         }
         .fit-card h3 {
             margin-top: 0;
             margin-bottom: 0.45rem;
             font-size: 1.05rem;
+        }
+        .spotlight {
+            padding: 1rem 1.1rem;
+            border-radius: 18px;
+            background: linear-gradient(135deg, rgba(204, 90, 45, 0.10), rgba(31, 122, 140, 0.08));
+            border: 1px solid rgba(31, 122, 140, 0.12);
+            margin: 0.4rem 0 1rem;
+        }
+        .spotlight h3 {
+            margin: 0 0 0.35rem;
+        }
+        .mini-note {
+            color: #43606c;
+            font-size: 0.92rem;
         }
         </style>
         """,
@@ -79,6 +137,7 @@ def render_sidebar_links() -> None:
     st.sidebar.markdown(f"- [Portfolio website]({PAGES_BASE})")
     st.sidebar.markdown(f"- [Why I fit P&G]({PAGES_BASE}/projects/pg-fit.html)")
     st.sidebar.markdown(f"- [Scripts library]({PAGES_BASE}/projects/scripts-library.html)")
+    st.sidebar.info("For recruiters: start with the Figures or Internship fit tabs, then use Code for traceability.")
 
 
 def filter_feature_models(feature_models: pd.DataFrame) -> pd.DataFrame:
@@ -112,6 +171,20 @@ def render_summary(filtered: pd.DataFrame) -> None:
         return
     middle.metric("Lowest q-value", f"{filtered['q'].min():.3g}")
     right.metric("Largest |beta|", f"{filtered['beta'].abs().max():.3f}")
+    st.caption("These summary values update with your current filters so non-specialists can review the strongest signal quickly.")
+
+
+def render_top_actions() -> None:
+    st.markdown(
+        f"""
+        <div class="button-row">
+            <a class="app-button" href="{PAGES_BASE}" target="_blank">Open portfolio website</a>
+            <a class="app-button secondary" href="{PAGES_BASE}/projects/pg-fit.html" target="_blank">See internship fit summary</a>
+            <a class="app-button secondary" href="{REPO_BASE.rsplit('/blob/main', 1)[0]}" target="_blank">Browse GitHub repository</a>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
 
 
 def render_recruiter_brief() -> None:
@@ -127,6 +200,29 @@ def render_recruiter_brief() -> None:
             """,
             unsafe_allow_html=True,
         )
+
+
+def render_feature_spotlight(filtered: pd.DataFrame) -> None:
+    if filtered.empty:
+        return
+    lead_row = filtered.sort_values(["q", "abs_beta"], ascending=[True, False]).iloc[0]
+    direction = "higher" if lead_row["beta"] > 0 else "lower"
+    st.markdown(
+        f"""
+        <div class="spotlight">
+            <h3>Current spotlight: {lead_row['feature']}</h3>
+            <p>
+                Under the selected filters, <strong>{lead_row['feature']}</strong> shows one of the strongest signals with
+                a beta of <strong>{lead_row['beta']:.3f}</strong>, indicating {direction} relative abundance/expression for
+                the selected comparison. The adjusted q-value is <strong>{lead_row['q']:.3g}</strong>.
+            </p>
+            <p class="mini-note">
+                This section helps a reviewer understand one concrete result before diving into the full table.
+            </p>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
     with second:
         st.markdown(
             """
@@ -168,6 +264,16 @@ def render_internship_fit() -> None:
         - It demonstrates end-to-end ownership: data preparation, statistical analysis, visualization, and reporting.
         - It is reviewable by both technical and non-technical audiences.
         - It shows that the analysis is not just code-complete, but presentation-ready for collaboration and decision support.
+        """
+    )
+    st.markdown(
+        """
+        **Best review path for a hiring team**
+
+        1. Review the hero section and summary metrics for context.
+        2. Open the Figures tab for visual quality and communication.
+        3. Open the Code tab to confirm reproducibility and engineering depth.
+        4. Use the portfolio and P&G-fit links for the broader application narrative.
         """
     )
 
@@ -253,6 +359,7 @@ def main() -> None:
     st.markdown(
         """
         <div class="hero">
+            <div class="hero-kicker">Internship Demo</div>
             <h1>Microbiome Multi-Omics Results Explorer</h1>
             <p>
                 Interactive Streamlit demo built from stable outputs in the GC and OSS workflows.
@@ -266,9 +373,11 @@ def main() -> None:
 
     filtered = filter_feature_models(feature_models)
     render_sidebar_links()
+    render_top_actions()
     selected_study = filtered["study"].iloc[0] if not filtered.empty else st.session_state.get("Study", "GC")
     render_recruiter_brief()
     render_summary(filtered)
+    render_feature_spotlight(filtered)
 
     overview, community, concordance_tab, gallery, code, fit = st.tabs(
         ["Feature models", "Community tests", "Concordance", "Figures", "Code", "Internship fit"]
