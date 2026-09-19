@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ordination and Visualization</title>
+  <link href="../styles.css" rel="stylesheet">
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>Ordination and Visualization</h1>
+      <p class="tagline">Hellinger PCA ordinations and treatment-focused visual summaries for interpretable biological patterns.</p>
+      <p><a href="../index.html">Back to homepage</a></p>
+    </header>
+
+    <section class="section card">
+      <h2>What this project does</h2>
+      <p>
+        Builds ordinations from direct gene/pathway/MAG abundance profiles, then visualizes treatment effects and
+        contextual separation while keeping full-space inferential tests in companion tables.
+      </p>
+    </section>
+
+    <section class="section card">
+      <h2>Key scripts</h2>
+      <ul>
+        <li><a href="../../scripts/ordination_OM_by_shrub.py">scripts/ordination_OM_by_shrub.py</a> - GC OM ordinations split by shrub state.</li>
+        <li><a href="../../scripts/network_analysis.py">scripts/network_analysis.py</a> - Additional structure-level visualization/analysis.</li>
+        <li><a href="../../scripts/analyze.py">scripts/analyze.py</a> - Produces baseline ordination score outputs.</li>
+      </ul>
+    </section>
+
+    <section class="section card">
+      <h2>Primary outputs</h2>
+      <ul>
+        <li><a href="../../figures/GC_OM_by_shrub/GC_OM_vs_noOM_separate_shrub_groups.png">figures/GC_OM_by_shrub/GC_OM_vs_noOM_separate_shrub_groups.png</a></li>
+        <li><a href="../../tables/GC_gene_ordination_scores.tsv">tables/GC_gene_ordination_scores.tsv</a></li>
+        <li><a href="../../tables/OSS_gene_ordination_scores.tsv">tables/OSS_gene_ordination_scores.tsv</a></li>
+      </ul>
+    </section>
+  </div>
+</body>
+</html>

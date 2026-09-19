@@ -1,0 +1,131 @@
+:root {
+  --ink: #13202b;
+  --muted: #5e6d77;
+  --paper: #f6f3ed;
+  --accent: #ca4d2f;
+  --accent-2: #1f7a8c;
+  --card: #fffdfa;
+  --line: #d9d3c8;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 15% 10%, #fcefd4 0, rgba(252, 239, 212, 0) 32%),
+    radial-gradient(circle at 86% 15%, #dff2f7 0, rgba(223, 242, 247, 0) 30%),
+    var(--paper);
+  font-family: "Space Grotesk", "Avenir Next", "Segoe UI", sans-serif;
+  line-height: 1.55;
+}
+
+.wrap {
+  width: min(1100px, 92vw);
+  margin: 0 auto;
+}
+
+header {
+  padding: 56px 0 24px;
+}
+
+h1, h2, h3 {
+  margin: 0 0 10px;
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  letter-spacing: -0.03em;
+}
+
+.tagline {
+  max-width: 70ch;
+  color: var(--muted);
+  font-size: 1.05rem;
+}
+
+.grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  margin: 22px 0 40px;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 18px;
+  box-shadow: 0 2px 0 rgba(19, 32, 43, 0.05);
+  transition: transform 0.16s ease, box-shadow 0.16s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(19, 32, 43, 0.09);
+}
+
+.card h3 {
+  font-size: 1.1rem;
+}
+
+.thumb {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  margin-bottom: 10px;
+  background: #f1ece2;
+}
+
+.pill {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  color: #fff;
+  background: linear-gradient(90deg, var(--accent), #e0782b);
+}
+
+a {
+  color: var(--accent-2);
+  text-decoration-thickness: 2px;
+}
+
+a:hover {
+  color: #0f5f6e;
+}
+
+.section {
+  padding: 10px 0 24px;
+}
+
+.callout {
+  background: #fef9ef;
+  border: 1px solid #ecd8ac;
+  border-radius: 12px;
+  padding: 14px;
+}
+
+ul {
+  margin: 8px 0 0 20px;
+}
+
+footer {
+  border-top: 1px solid var(--line);
+  padding: 18px 0 32px;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+@media (max-width: 700px) {
+  header {
+    padding-top: 32px;
+  }
+}
