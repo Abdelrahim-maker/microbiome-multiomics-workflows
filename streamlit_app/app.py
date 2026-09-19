@@ -9,7 +9,7 @@ DATA_DIR = APP_DIR / "data"
 ASSET_DIR = APP_DIR / "assets"
 REPO_BASE = "https://github.com/Abdelrahim-maker/microbiome-multiomics-workflows/blob/main"
 PAGES_BASE = "https://abdelrahim-maker.github.io/microbiome-multiomics-workflows"
-CV_URL = f"{PAGES_BASE}/assets/Afaf_Abdelrahim_CV_2026.pdf"
+CV_URL = "https://raw.githubusercontent.com/Abdelrahim-maker/microbiome-multiomics-workflows/main/docs/assets/Afaf_Abdelrahim_CV_2026.pdf"
 
 
 @st.cache_data
