@@ -125,6 +125,111 @@ def style_page() -> None:
             color: #43606c;
             font-size: 0.92rem;
         }
+        .carbon-scene {
+            margin: 0.75rem 0 0.85rem;
+            border-radius: 20px;
+            border: 1px solid rgba(20, 56, 73, 0.18);
+            background: linear-gradient(180deg, #ecf7ff 0%, #f8efe2 22%, #d8b387 22%, #7a583c 100%);
+            height: 340px;
+            position: relative;
+            overflow: hidden;
+        }
+        .canopy {
+            position: absolute;
+            top: 54px;
+            left: 8%;
+            width: 84%;
+            height: 38px;
+            border-radius: 999px;
+            background: linear-gradient(90deg, #2f7f62, #3a966f, #2f7f62);
+            box-shadow: 0 7px 16px rgba(25, 79, 60, 0.24);
+            animation: canopyPulse 5.5s ease-in-out infinite;
+        }
+        .surface {
+            position: absolute;
+            top: 126px;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: rgba(130, 86, 48, 0.42);
+        }
+        .soil-label {
+            position: absolute;
+            right: 12px;
+            font-size: 0.76rem;
+            color: #fffaf0;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            background: rgba(19, 32, 43, 0.22);
+            padding: 4px 8px;
+            border-radius: 999px;
+        }
+        .soil-top { top: 154px; }
+        .soil-mid { top: 220px; }
+        .soil-deep { top: 286px; }
+        .root {
+            position: absolute;
+            top: 126px;
+            width: 2px;
+            background: linear-gradient(180deg, #f2d3a1, rgba(242, 211, 161, 0.24));
+            transform-origin: top;
+            animation: rootGrow 4.4s ease-in-out infinite;
+        }
+        .r1 { left: 20%; height: 158px; }
+        .r2 { left: 34%; height: 180px; animation-delay: -1.2s; }
+        .r3 { left: 46%; height: 148px; animation-delay: -0.7s; }
+        .r4 { left: 58%; height: 170px; animation-delay: -1.9s; }
+        .r5 { left: 72%; height: 162px; animation-delay: -2.3s; }
+        .carbon-dot {
+            position: absolute;
+            top: 82px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #29353f;
+            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.13);
+            opacity: 0;
+            animation: carbonDrop 4.8s linear infinite;
+        }
+        .c1 { left: 14%; animation-delay: -0.3s; }
+        .c2 { left: 22%; animation-delay: -2.1s; }
+        .c3 { left: 31%; animation-delay: -1.1s; }
+        .c4 { left: 42%; animation-delay: -3.2s; }
+        .c5 { left: 55%; animation-delay: -0.9s; }
+        .c6 { left: 64%; animation-delay: -2.7s; }
+        .c7 { left: 72%; animation-delay: -1.8s; }
+        .c8 { left: 80%; animation-delay: -3.8s; }
+        .c9 { left: 50%; animation-delay: -4.4s; }
+        .retention-meter {
+            display: grid;
+            gap: 8px;
+            margin-top: 0.5rem;
+        }
+        .retention-row {
+            border-radius: 999px;
+            height: 10px;
+            background: rgba(19, 32, 43, 0.1);
+            overflow: hidden;
+        }
+        .retention-fill {
+            height: 100%;
+            border-radius: inherit;
+            background: linear-gradient(90deg, #2f7f62, #56a37d);
+        }
+        @keyframes canopyPulse {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-4px); }
+        }
+        @keyframes rootGrow {
+            0%, 100% { transform: scaleY(0.84); opacity: 0.56; }
+            50% { transform: scaleY(1.05); opacity: 1; }
+        }
+        @keyframes carbonDrop {
+            0% { transform: translateY(0) scale(0.85); opacity: 0; }
+            10% { opacity: 1; }
+            78% { opacity: 1; }
+            100% { transform: translateY(230px) scale(1.08); opacity: 0; }
+        }
         </style>
         """,
         unsafe_allow_html=True,
@@ -355,6 +460,72 @@ def render_repo_links() -> None:
         st.markdown(f"- [{label}]({url})")
 
 
+def render_carbon_animation() -> None:
+    st.subheader("Carbon Sequestration Animation")
+    st.markdown(
+        "This conceptual animation shows carbon moving from plant biomass into shallow and deeper soil compartments through root and microbial pathways."
+    )
+
+    strength = st.slider(
+        "Relative sequestration strength",
+        min_value=20,
+        max_value=95,
+        value=68,
+        step=1,
+        help="Higher values represent stronger transfer/retention into deeper soil layers.",
+    )
+
+    shallow = min(98, int(strength + 18))
+    mid = max(14, int(strength * 0.72))
+    deep = max(8, int(strength * 0.48))
+
+    st.markdown(
+        """
+        <div class="carbon-scene" aria-label="Animated carbon sequestration concept">
+          <div class="canopy"></div>
+          <div class="surface"></div>
+          <div class="soil-label soil-top">Top soil</div>
+          <div class="soil-label soil-mid">Mid soil</div>
+          <div class="soil-label soil-deep">Deep soil</div>
+          <div class="root r1"></div>
+          <div class="root r2"></div>
+          <div class="root r3"></div>
+          <div class="root r4"></div>
+          <div class="root r5"></div>
+          <div class="carbon-dot c1"></div>
+          <div class="carbon-dot c2"></div>
+          <div class="carbon-dot c3"></div>
+          <div class="carbon-dot c4"></div>
+          <div class="carbon-dot c5"></div>
+          <div class="carbon-dot c6"></div>
+          <div class="carbon-dot c7"></div>
+          <div class="carbon-dot c8"></div>
+          <div class="carbon-dot c9"></div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+    st.markdown("**Estimated retention profile (illustrative):**")
+    st.markdown(
+        f"""
+        <div class="retention-meter">
+          <div>Top soil ({shallow}%)</div>
+          <div class="retention-row"><div class="retention-fill" style="width: {shallow}%;"></div></div>
+          <div>Mid soil ({mid}%)</div>
+          <div class="retention-row"><div class="retention-fill" style="width: {mid}%;"></div></div>
+          <div>Deep soil ({deep}%)</div>
+          <div class="retention-row"><div class="retention-fill" style="width: {deep}%;"></div></div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+    st.caption(
+        "Conceptual educational view for communication in interviews. Not a mechanistic simulator."
+    )
+
+
 def main() -> None:
     style_page()
     feature_models, community_tests, concordance = load_data()
@@ -382,8 +553,8 @@ def main() -> None:
     render_summary(filtered)
     render_feature_spotlight(filtered)
 
-    overview, community, concordance_tab, gallery, code, fit = st.tabs(
-        ["Feature models", "Community tests", "Concordance", "Figures", "Code", "Internship fit"]
+    overview, community, concordance_tab, gallery, carbon_anim, code, fit = st.tabs(
+        ["Feature models", "Community tests", "Concordance", "Figures", "Carbon animation", "Code", "Internship fit"]
     )
 
     with overview:
@@ -395,6 +566,8 @@ def main() -> None:
         render_concordance(concordance, selected_study)
     with gallery:
         render_gallery()
+    with carbon_anim:
+        render_carbon_animation()
     with code:
         render_repo_links()
     with fit:
