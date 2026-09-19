@@ -55,6 +55,73 @@ h1 {
   margin: 22px 0 40px;
 }
 
+.project-toolbar {
+  display: grid;
+  gap: 14px;
+  margin: 14px 0 8px;
+}
+
+.toolbar-controls {
+  display: grid;
+  gap: 12px;
+}
+
+.eyebrow {
+  margin: 0 0 6px;
+  color: var(--accent-2);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip {
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 8px 12px;
+  background: #fff;
+  color: var(--ink);
+  font: inherit;
+  cursor: pointer;
+}
+
+.chip.is-active,
+.chip:hover {
+  background: var(--accent-2);
+  border-color: var(--accent-2);
+  color: #fff;
+}
+
+.searchbox {
+  display: grid;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.searchbox input {
+  width: 100%;
+  max-width: 380px;
+  padding: 11px 13px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
+  color: var(--ink);
+  font: inherit;
+}
+
+.result-count {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
 .kpi-grid {
   margin-top: 10px;
 }
@@ -105,6 +172,35 @@ h1 {
 
 .card h3 {
   font-size: 1.1rem;
+}
+
+.detail-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 10px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--accent-2);
+  font: inherit;
+  cursor: pointer;
+}
+
+.detail-panel {
+  margin-top: 10px;
+  padding: 12px 13px;
+  border-radius: 12px;
+  border: 1px dashed var(--line);
+  background: #fcfaf5;
+}
+
+.detail-panel p {
+  margin: 0 0 8px;
+}
+
+.detail-panel p:last-child {
+  margin-bottom: 0;
 }
 
 .thumb {
@@ -161,5 +257,9 @@ footer {
 @media (max-width: 700px) {
   header {
     padding-top: 32px;
+  }
+
+  .project-toolbar {
+    margin-top: 10px;
   }
 }

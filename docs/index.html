@@ -58,44 +58,91 @@
 
     <section class="section">
       <h2>Projects</h2>
+      <div class="project-toolbar card">
+        <div>
+          <p class="eyebrow">Interactive view</p>
+          <h3>Filter projects by theme or keyword</h3>
+          <p class="tagline">Use the buttons and search box to narrow the portfolio to the type of work a reviewer wants to see first.</p>
+        </div>
+        <div class="toolbar-controls">
+          <div class="chip-row" role="group" aria-label="Project filters">
+            <button class="chip is-active" type="button" data-filter="all">All</button>
+            <button class="chip" type="button" data-filter="preparation">Preparation</button>
+            <button class="chip" type="button" data-filter="modeling">Modeling</button>
+            <button class="chip" type="button" data-filter="visualization">Visualization</button>
+            <button class="chip" type="button" data-filter="story">Story</button>
+            <button class="chip" type="button" data-filter="deliverables">Deliverables</button>
+          </div>
+          <label class="searchbox">
+            <span>Search</span>
+            <input type="search" placeholder="gene, report, ordination, validation" data-project-search>
+          </label>
+          <p class="result-count" data-result-count>5 projects shown</p>
+        </div>
+      </div>
       <div class="grid">
-        <article class="card">
+        <article class="card" data-project-card data-category="preparation" data-keywords="preparation mapping audit metadata direct inferred validation tpm mag gene">
           <img class="thumb" src="assets/previews/GC_carbon_gene_with_stats.png" alt="Carbon gene community plot preview">
           <h3>1) Data Preparation and Mapping Audit</h3>
           <p>Target definitions, annotation joins, mapping-based quantification, and metadata matching checks.</p>
           <a href="projects/data-prep.html">Open project page</a>
+          <button class="detail-link" type="button" data-detail-toggle aria-expanded="false" aria-controls="details-data-prep">Quick facts</button>
+          <div class="detail-panel" id="details-data-prep" hidden>
+            <p><strong>Best for:</strong> reviewers who want pipeline rigor, sample QC, and provenance checks.</p>
+            <p><strong>Main tools:</strong> pandas, validation scripts, mapping audit outputs.</p>
+          </div>
           <div class="pill">Preparation</div>
         </article>
 
-        <article class="card">
+        <article class="card" data-project-card data-category="modeling" data-keywords="modeling feature effects statistics regression fdr robustness community tests gene pathway mechanism mag">
           <img class="thumb" src="assets/previews/GC_gene_effects.png" alt="Feature effect summary preview">
           <h3>2) Core Statistical Analysis</h3>
           <p>Feature-level adjusted models and multivariable community tests for gene, pathway, mechanism, and MAG levels.</p>
           <a href="projects/core-analysis.html">Open project page</a>
+          <button class="detail-link" type="button" data-detail-toggle aria-expanded="false" aria-controls="details-core-analysis">Quick facts</button>
+          <div class="detail-panel" id="details-core-analysis" hidden>
+            <p><strong>Best for:</strong> reviewers looking for statistical depth and interpretable effect sizes.</p>
+            <p><strong>Main tools:</strong> statsmodels, robust standard errors, FDR control.</p>
+          </div>
           <div class="pill">Modeling</div>
         </article>
 
-        <article class="card">
+        <article class="card" data-project-card data-category="visualization" data-keywords="visualization ordination pca hellinger treatment shrub figure preview plot community">
           <img class="thumb" src="assets/previews/GC_OM_vs_noOM_separate_shrub_groups.png" alt="Ordination preview">
           <h3>3) Ordination and Visualization</h3>
           <p>Hellinger PCA ordinations and treatment-focused interpretation-ready figures for GC and OSS.</p>
           <a href="projects/ordination-visualization.html">Open project page</a>
+          <button class="detail-link" type="button" data-detail-toggle aria-expanded="false" aria-controls="details-ordination">Quick facts</button>
+          <div class="detail-panel" id="details-ordination" hidden>
+            <p><strong>Best for:</strong> fast visual review of biological separation and communication quality.</p>
+            <p><strong>Main tools:</strong> PCA ordination, figure curation, treatment-focused comparison views.</p>
+          </div>
           <div class="pill">Visualization</div>
         </article>
 
-        <article class="card">
+        <article class="card" data-project-card data-category="story" data-keywords="story manuscript figures contrasts category follow up interpretation carbon report">
           <img class="thumb" src="assets/previews/GC_carbon_category_with_stats.png" alt="Manuscript story preview">
           <h3>4) Manuscript Story Package</h3>
           <p>Publication-style workflow with factorial contrasts, category-level follow-up, and curated figure outputs.</p>
           <a href="projects/manuscript-story.html">Open project page</a>
+          <button class="detail-link" type="button" data-detail-toggle aria-expanded="false" aria-controls="details-story">Quick facts</button>
+          <div class="detail-panel" id="details-story" hidden>
+            <p><strong>Best for:</strong> reviewers who want to see how technical outputs become a coherent narrative.</p>
+            <p><strong>Main tools:</strong> story-specific scripts, figure selection, report framing.</p>
+          </div>
           <div class="pill">Story</div>
         </article>
 
-        <article class="card">
+        <article class="card" data-project-card data-category="deliverables" data-keywords="deliverables reporting workbook export validation summary tables html markdown">
           <img class="thumb" src="assets/previews/GC_cross_level_effect_sizes.png" alt="Reporting summary preview">
           <h3>5) Reporting and Deliverables</h3>
           <p>Automated report generation, workbook export, and audit-ready result tables.</p>
           <a href="projects/reporting-deliverables.html">Open project page</a>
+          <button class="detail-link" type="button" data-detail-toggle aria-expanded="false" aria-controls="details-deliverables">Quick facts</button>
+          <div class="detail-panel" id="details-deliverables" hidden>
+            <p><strong>Best for:</strong> reviewers focused on reproducibility, reporting discipline, and handoff readiness.</p>
+            <p><strong>Main tools:</strong> report generation, exports, validation JSON, workbook outputs.</p>
+          </div>
           <div class="pill">Deliverables</div>
         </article>
       </div>
@@ -119,5 +166,6 @@
       <p>Built for internship applications. Last update: 2026-09-18.</p>
     </footer>
   </div>
+  <script src="site.js"></script>
 </body>
 </html>
